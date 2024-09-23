@@ -1,21 +1,18 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-
 :root {
   --body-color: rgb(16, 16, 53);
   --text-color1: rgb(221, 217, 217);
 }
 
-
 * {
   box-sizing: border-box;
   margin: 0 auto;
   padding: 0;
+}
 
+html,
+body {
+  height: 100%;
+  margin: 0;
 }
 
 body {

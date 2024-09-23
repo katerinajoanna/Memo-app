@@ -1,0 +1,21 @@
+.logo {
+    width: 30px;
+    height: 40px;
+    position: fixed;
+    top: 0;
+    left: 5.2rem;
+    background-color: #f60707;
+    /* Czarny kwadrat */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-text {
+    font-size: 20px;
+    transform: rotate(90deg);
+    /* Obrócenie litery "m" */
+    color: #0a0909;
+    /* Biała litera */
+    font-weight: bold;
+}
