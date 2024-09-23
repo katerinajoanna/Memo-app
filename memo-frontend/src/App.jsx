@@ -7,13 +7,15 @@ import RemovedPage from './pages/removedPage/RemovedPage';
 import Logo from './assets/logo/Logo';
 
 function App() {
-  const [messages, setMessages] = useState([]);
-  const [removedMessages, setRemovedMessages] = useState([]);
+  const [messages, setMessages] = useState([]);      // Status som lagrar den aktuella listan med meddelanden
+  const [removedMessages, setRemovedMessages] = useState([]);    // Status för lagring av raderade meddelanden
 
+  // Funktion för att lägga till ett nytt meddelande
   const addMessage = (newMessage) => {
     setMessages((prevMessages) => [...prevMessages, newMessage]);
   };
 
+  // Funktion för att radera meddelanden
   const removeMessage = (id) => {
     setMessages((prevMessages) => prevMessages.filter(msg => msg.id !== id));
     const removedMessage = messages.find(msg => msg.id === id);

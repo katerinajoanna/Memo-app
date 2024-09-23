@@ -10,13 +10,13 @@ function FlowPage({ messages, onAddMessage }) {
     console.log('Show Form:', showForm);
 
     const handleBtnClick = () => {
-        setShowForm(!showForm);  // Kliknięcie przycisku pokazuje/ukrywa formularz
+        setShowForm(!showForm);  // Genom att klicka på knappen visas/döljer formuläret
     };
 
     return (
         <div className='flow-page'>
 
-            <MessageList messages={messages} />   {/* Wyświetlenie listy wiadomości */}
+            <MessageList messages={messages} />   {/* Visa meddelandelistan */}
 
             {showForm ? (
 

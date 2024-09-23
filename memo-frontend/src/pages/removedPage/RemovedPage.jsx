@@ -21,11 +21,11 @@ function RemovedPage({ removedMessages }) {
             )}
 
             <div className="footer">
-                {/* wstawic fale */}
+                {/* wstawic fale !!!!!!!!!!! infoga vågor !!!!!!! */}
             </div>
 
             <div className="btn-container">
-                <BtnWrite /> {/* Przycisk do dodawania wiadomości */}
+                <BtnWrite /> {/* Knapp för att lägga till meddelanden */}
             </div>
         </div>
     );
