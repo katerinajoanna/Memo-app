@@ -1,0 +1,39 @@
+.flow-page {
+    margin: 2rem;
+    margin-top: 3.5rem;
+    padding: 10px;
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    height: 85vh;
+    /*Ställer in höjden till 100 % av vyn */
+    position: relative;
+}
+
+.flow-page .btn-container {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 4rem;
+}
+
+.view-removed-link {
+    width: 150px;
+    height: 80px;
+    padding: 10px;
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    color: #0b87e5;
+    text-decoration: none;
+    border: 2px solid #0b87e5;
+    border-radius: 5px;
+    transition: all 3s ease;
+    position: fixed;
+    bottom: .1rem;
+}
+
+.view-removed-link:hover {
+    background-color: #568fba;
+    color: var(--body-color);
+    transform: scale(1.05);
+}

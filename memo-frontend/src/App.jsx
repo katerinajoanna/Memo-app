@@ -18,6 +18,8 @@ function App() {
   // Funktion för att radera meddelanden
   const removeMessage = (id) => {
     setMessages((prevMessages) => prevMessages.filter(msg => msg.id !== id));
+
+    // Hittar raderat meddelande baserat på id
     const removedMessage = messages.find(msg => msg.id === id);
     if (removedMessage) {
       setRemovedMessages((prevRemoved) => [...prevRemoved, removedMessage]);

@@ -15,13 +15,10 @@ function FlowPage({ messages, onAddMessage }) {
 
     return (
         <div className='flow-page'>
-
             <MessageList messages={messages} />   {/* Visa meddelandelistan */}
 
             {showForm ? (
-
                 <MessageForm onAddMessage={onAddMessage} />
-
             ) : (
                 <div className="btn-container">
                     <BtnWrite onClick={handleBtnClick} />

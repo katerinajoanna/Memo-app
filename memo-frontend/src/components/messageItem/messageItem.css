@@ -1,0 +1,29 @@
+.message-item {
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: azure;
+    color: rgb(15, 15, 15);
+    position: relative;
+}
+
+.message-header {
+    padding: 5px;
+    font-size: 12px;
+    color: rgb(146, 148, 150);
+}
+
+.message-body {
+    padding: 5px;
+    margin: 1rem;
+    font-size: 20px;
+    color: rgb(10, 10, 10);
+    font-weight: 500;
+    overflow-wrap: break-word;
+}
+
+.message-footer {
+    padding: 5px;
+    font-size: 20px;
+    color: rgb(42, 44, 44);
+}
