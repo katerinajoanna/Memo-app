@@ -17,7 +17,7 @@ function WriteMsgPage({ onAddMessage }) {
                 createdAt: new Date().toISOString(),
             };
             onAddMessage(newMessage);
-            navigate('/'); // Gå till FlowPage efter att du har lagt till ditt meddelande
+            navigate('/messages'); // Gå till FlowPage efter att du har lagt till ditt meddelande
         }
     };
 
