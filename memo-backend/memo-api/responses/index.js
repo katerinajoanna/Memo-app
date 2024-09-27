@@ -1,4 +1,4 @@
-function sendResponses(status, data) {
+function sendResponse(status, data) {
     return {
         statusCode: status,
         headers: {
@@ -18,4 +18,4 @@ function sendError(status, data) {
     };
 }
 
-module.exports = { sendError, sendResponses };
+module.exports = { sendError, sendResponse };

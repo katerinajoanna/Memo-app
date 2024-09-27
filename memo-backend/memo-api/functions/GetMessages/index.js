@@ -2,24 +2,22 @@ const { sendResponse, sendError } = require('../../responses/index');
 const { db } = require('../../services/index');
 
 
-
-
 exports.handler = async (event) => {
   try {
-    const id = event.pathParameters.id; // Pobieramy id z parametrów ścieżki
-    const { Item } = await db.get({
+    const data = await db.scan({
       TableName: 'Messages',
-      Key: {
-        id: id // Użyj id z pathParameters
-      }
     });
 
-    if (!Item) {
-      return sendResponse(404, { message: 'Du har inga meddelanden att visa.' })
+    const messages = data.Items;
+
+    if (!messages || messages.length === 0) {
+      return sendResponse(404, { message: 'No messages found' });
     }
-    return sendResponse(200, Item);
+
+    return sendResponse(200, messages);
   } catch (error) {
     console.error('Error fetching messages:', error);
     return sendError(500, 'A server error occurred!');
   }
 };
+

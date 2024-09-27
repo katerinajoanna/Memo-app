@@ -1,21 +1,31 @@
 const { sendResponse, sendError } = require('../../responses/index');
 const { db } = require('../../services/index');
-const { v4: uuidv4 } = require('uuid');
+
+// Funkcja generująca losowy ciąg znaków o podanej długości
+function generateRandomString(length) {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
+  const charactersLength = characters.length;
+
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+
+  return result;
+}
 
 exports.handler = async (event) => {
   try {
-    const body = JSON.parse(event.body); // Parsuj ciało żądania
+    const body = JSON.parse(event.body);
 
-    const { username, message, date } = body; // Wyciągnij dane z body
+    const { username, message, date } = body;
 
-    // Upewnij się, że wszystkie wymagane pola są obecne
     if (!username || !message || !date) {
       return sendError(400, 'Missing required fields');
     }
 
-    // Generuj unikalny identyfikator
-    const id = uuidv4();
-    // Dodaj nową wiadomość do bazy danych
+    const id = generateRandomString(8);
+
     await db.put({
       TableName: 'Messages',
       Item: {

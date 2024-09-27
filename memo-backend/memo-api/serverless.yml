@@ -11,31 +11,32 @@ provider:
     role: arn:aws:iam::796973483684:role/LambdaDynamoDbRole
   httpApi:
     cors: true
-
+  
+    
 functions:
   GetMessages:
     handler: functions/GetMessages/index.handler
     events:
       - httpApi:
-          path: /messages
+          path: /api/messages
           method: get
   CreateMessage:
     handler: functions/CreateMessage/index.handler
     events:
       - httpApi:
-          path: /message
+          path: /api/message
           method: post
   UpdateMessage:
     handler: functions/UpdateMessage/index.handler
     events:
       - httpApi:
-          path: /message/{id}
+          path: /api/message/{id}
           method: put
   DeleteMessages:
     handler: functions/DeleteMessage/index.handler
     events:
       - httpApi:
-          path: /message
+          path: /api/message/{id}
           method: delete   
     
 resources:
