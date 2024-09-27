@@ -27,8 +27,6 @@ function MessageForm({ onAddMessage }) {
         e.target.style.height = `${e.target.scrollHeight}px`; // Ställ in höjden på scrollHeight
     };
 
-
-
     return (
         <div className="form-page">
             <form onSubmit={handleSubmit}>

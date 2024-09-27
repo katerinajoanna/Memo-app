@@ -1,5 +1,5 @@
 import './index.css';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import FlowPage from './pages/flowPage/FlowPage';
@@ -8,8 +8,7 @@ import RemovedPage from './pages/removedPage/RemovedPage';
 import Logo from './assets/logo/Logo';
 
 function App() {
-  const [messages, setMessages] = useState([]);      // Status som lagrar den aktuella listan med meddelanden
-  const [removedMessages, setRemovedMessages] = useState([]);    // Status för lagring av raderade meddelanden
+  const [messages, setMessages] = useState([]);   // Status som lagrar den aktuella listan med meddelanden
 
   //Funktion att hämta meddelanden från backend
   const getMessages = () => {
@@ -34,24 +33,31 @@ function App() {
 
   // Funktion för att radera meddelanden
   const removeMessage = (id) => {
-    setMessages((prevMessages) => prevMessages.filter(msg => msg.id !== id));
-
-    // Hittar raderat meddelande baserat på id
     const removedMessage = messages.find(msg => msg.id === id);
     if (removedMessage) {
-      setRemovedMessages((prevRemoved) => [...prevRemoved, removedMessage]);
+      setMessages((prevMessages) => prevMessages.filter(msg => msg.id !== id));
     }
   };
+
+  // Funktion för att uppdatera meddelanden i listan
+  const handleEditMessage = (msgToEdit) => {
+    console.log('Edit message:', msgToEdit);
+
+    setMessages((prevMessages) =>
+      prevMessages.map((msg) =>
+        msg.id === msgToEdit.id ? { ...msg, ...msgToEdit } : msg
+      )
+    );
+  }
 
   return (
     <Router>
       <div className="app">
         <Logo />
         <Routes>
-          <Route path='/' element={<Navigate to="/messages" replace />} />
-          <Route path='/messages' element={<FlowPage messages={messages} onAddMessage={addMessage} onRemoveMessage={removeMessage} />} />
+          <Route path='/' element={<FlowPage messages={messages} onAddMessage={addMessage} onRemoveMessage={removeMessage} onEdit={handleEditMessage} />} />
           <Route path='/message' element={<WriteMsgPage onAddMessage={addMessage} />} />
-          <Route path='/removed' element={<RemovedPage removedMessages={removedMessages} />} />
+          <Route path='/removed' element={<RemovedPage />} />
         </Routes>
       </div>
     </Router>
@@ -59,4 +65,3 @@ function App() {
 }
 
 export default App;
-

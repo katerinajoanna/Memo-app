@@ -1,0 +1,57 @@
+.edit-message-form {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0 auto;
+}
+
+.edit-textarea {
+    padding: 10px;
+    font-size: 28px;
+    font-weight: 500;
+    color: rgb(10, 10, 10);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    overflow-wrap: break-word;
+}
+
+.btn-group {
+    width: 580px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.btn-group button {
+    width: 90px;
+    /* Stała szerokość */
+    height: 90px;
+    /* Stała wysokość dla kwadratowego kształtu */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    font-size: 25px;
+    font-weight: 700;
+
+}
+
+.btn-save {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn-cancel {
+    background-color: #4CAF50;
+    color: rgb(174, 47, 47);
+}
+
+button:hover {
+    opacity: 0.9;
+}

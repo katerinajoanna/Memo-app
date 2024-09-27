@@ -2,27 +2,60 @@ import './flowPage.css';
 import { useState } from 'react';
 import MessageList from '../../components/messageList/MessageList';
 import MessageForm from "../../components/messageForm/MessageForm";
+import EditMsgForm from "../../components/editForm/EditMsgForm";
 import BtnWrite from '../../components/buttonWrite/BtnWrite';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-function FlowPage({ messages, onAddMessage }) {
+function FlowPage({ messages, onAddMessage, onRemoveMessage, onEdit }) {
     const [showForm, setShowForm] = useState(false);
-    console.log('Show Form:', showForm);
+    const [editingMessage, setEditingMessage] = useState(null);
+    const navigate = useNavigate();
 
     const handleBtnClick = () => {
-        setShowForm(!showForm);  // Genom att klicka på knappen visas/döljer formuläret
+        setShowForm(!showForm);
+    };
+
+    const handleRemoveMessage = (id) => {
+        onRemoveMessage(id);
+        navigate('/removed');
+    };
+
+    const handleEditMessage = (msg) => {
+        setEditingMessage(msg);
+    };
+
+    const handleSaveMessage = (updatedMessage) => {
+        onEdit(updatedMessage);      // Tillhandahåller ett uppdaterat meddelande
+        setEditingMessage(null);      // Stäng redigeringsformuläret
+    };
+
+    const handleCancelEdit = () => {
+        setEditingMessage(null);       // Avbryt redigering
     };
 
     return (
         <div className='flow-page'>
-            <MessageList messages={messages} />   {/* Visa meddelandelistan */}
-
-            {showForm ? (
-                <MessageForm onAddMessage={onAddMessage} />
+            {editingMessage ? (
+                <EditMsgForm
+                    message={editingMessage}
+                    onSave={handleSaveMessage}
+                    onCancel={handleCancelEdit}
+                />
             ) : (
-                <div className="btn-container">
-                    <BtnWrite onClick={handleBtnClick} />
-                </div>
+                <>
+                    <MessageList
+                        messages={messages}
+                        onEdit={handleEditMessage}
+                        onRemove={handleRemoveMessage}
+                    />
+                    {showForm ? (
+                        <MessageForm onAddMessage={onAddMessage} />
+                    ) : (
+                        <div className="btn-container">
+                            <BtnWrite onClick={handleBtnClick} />
+                        </div>
+                    )}
+                </>
             )}
             <Link to="/removed" className="view-removed-link">
                 Removed Messages

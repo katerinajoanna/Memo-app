@@ -6,7 +6,6 @@
     display: flex;
     flex-direction: column;
     height: 85vh;
-    /*Ställer in höjden till 100 % av vyn */
     position: relative;
 }
 
