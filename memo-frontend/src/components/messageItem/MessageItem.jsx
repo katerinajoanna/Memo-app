@@ -31,12 +31,12 @@ function MessageItem({ msg, onEdit, onRemove }) {
                 <span><strong>~ {msg.username}</strong></span>
                 <div className="message-actions">
                     <div className="action-left">
-                        <button onClick={() => onEdit(msg)}>
+                        <button onClick={() => onEdit(msg)}>  {/* OnEdit anropas efter att du klickar på redigera-knappen */}  */
                             <FontAwesomeIcon icon={faPencilAlt} />
                         </button>
                     </div>
                     <div className="action-right">
-                        <button onClick={() => onRemove(msg.id)}>
+                        <button onClick={() => onRemove(msg.id)}>  {/* OnEdit anropas efter att du klickar på redigera-knappen */}  */
                             <FontAwesomeIcon icon={faTrashAlt} />
                         </button>
                     </div>

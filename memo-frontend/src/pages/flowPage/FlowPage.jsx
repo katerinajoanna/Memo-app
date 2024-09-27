@@ -17,7 +17,7 @@ function FlowPage({ messages, onAddMessage, onRemoveMessage, onEdit }) {
 
     const handleRemoveMessage = (id) => {
         onRemoveMessage(id);
-        navigate('/removed');
+        navigate('/');
     };
 
     const handleEditMessage = (msg) => {
