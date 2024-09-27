@@ -12,7 +12,7 @@ function App() {
 
   //Funktion att hämta meddelanden från backend
   const getMessages = () => {
-    axios.get('https://5g9viuqcgg.execute-api.eu-north-1.amazonaws.com/messages')
+    axios.get('https://5g9viuqcgg.execute-api.eu-north-1.amazonaws.com/api/messages')
       .then((response) => {
         setMessages(response.data);
       })
