@@ -1,5 +1,5 @@
 import './flowPage.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import MessageList from '../../components/messageList/MessageList';
 import MessageForm from "../../components/messageForm/MessageForm";
 import EditMsgForm from "../../components/editForm/EditMsgForm";
@@ -11,6 +11,10 @@ function FlowPage({ messages, onAddMessage, onRemoveMessage, onEdit }) {
     const [editingMessage, setEditingMessage] = useState(null);
     const navigate = useNavigate();
 
+    useEffect(() => {
+        console.log('Messages in FlowPage after remove:', messages);
+    }, [messages]);
+
     const handleBtnClick = () => {
         setShowForm(!showForm);
     };
@@ -18,6 +22,7 @@ function FlowPage({ messages, onAddMessage, onRemoveMessage, onEdit }) {
     const handleRemoveMessage = (id) => {
         onRemoveMessage(id);
         navigate('/');
+        console.log(`Message with ID ${id} has been removed.`);
     };
 
     const handleEditMessage = (msg) => {
