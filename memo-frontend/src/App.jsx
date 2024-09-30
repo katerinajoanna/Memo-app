@@ -9,6 +9,7 @@ import Logo from './assets/logo/Logo';
 
 function App() {
   const [messages, setMessages] = useState([]);
+  const [editingMessage, setEditingMessage] = useState(null);
 
   const getMessages = () => {
     axios.get('https://30k8uadsyf.execute-api.eu-north-1.amazonaws.com/api/messages')
@@ -24,12 +25,26 @@ function App() {
     getMessages();
   }, []);
 
+
+  // implementacja spec meddelande
+  const getMessageById = (id) => {
+    axios.get(`https://30k8uadsyf.execute-api.eu-north-1.amazonaws.com/api/messages/${id}`)
+      .then((response) => {
+        setEditingMessage(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching message:', error);
+      });
+  };
+
+
+
   const addMessage = (newMessage) => {
     setMessages((prevMessages) => [...prevMessages, newMessage]);
   };
 
   const removeMessage = (id) => {
-    axios.delete(`https://30k8uadsyf.execute-api.eu-north-1.amazonaws.com/api/message/${id}`)
+    axios.delete(`https://30k8uadsyf.execute-api.eu-north-1.amazonaws.com/api/messages/${id}`)
       .then(() => {
         setMessages((prevMessages) => prevMessages.filter(msg => msg.id !== id));
       })
@@ -39,18 +54,23 @@ function App() {
   };
 
   const updateMessage = (updatedMessage) => {
-    axios.put(`https://30k8uadsyf.execute-api.eu-north-1.amazonaws.com/api/message/${updatedMessage.id}`, {
-      text: updatedMessage.text
+
+    if (!updateMessage.id || !updateMessage.message) {
+      console.error('Invalid updated message:', updateMessage);
+    }
+
+    axios.put(`https://30k8uadsyf.execute-api.eu-north-1.amazonaws.com/api/messages/${updatedMessage.id}`, {
+      message: updatedMessage.message
     })
       .then(() => {
         setMessages((prevMessages) =>
           prevMessages.map((msg) =>
-            msg.id === updatedMessage.id ? { ...msg, text: updatedMessage.text } : msg
+            msg.id === updatedMessage.id ? { ...msg, message: updatedMessage.message } : msg
           )
         );
       })
       .catch((error) => {
-        console.error('Nie udało się zaktualizować wiadomości', error);
+        console.error('Det gick inte att uppdatera meddelandet', error.response.data);
       });
   };
 
@@ -59,7 +79,14 @@ function App() {
       <div className="app">
         <Logo />
         <Routes>
-          <Route path='/' element={<FlowPage messages={messages} onAddMessage={addMessage} onRemoveMessage={removeMessage} onEdit={updateMessage} />} />
+          <Route path='/' element={<FlowPage
+            messages={messages}
+            onAddMessage={addMessage}
+            onRemoveMessage={removeMessage}
+            onEdit={updateMessage}
+            onFetchMessageById={getMessageById}
+            editingMessage={editingMessage}
+          />} />
           <Route path='/message' element={<WriteMsgPage onAddMessage={addMessage} />} />
           <Route path='/removed' element={<RemovedPage />} />
         </Routes>

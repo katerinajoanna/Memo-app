@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './editMsgForm.css';
 
 function EditMsgForm({ message, onSave, onCancel }) {
-    const [text, setText] = useState(message.text);
+    const [text, setText] = useState(message?.text || '');
 
     const handleSubmit = (e) => {
         e.preventDefault();

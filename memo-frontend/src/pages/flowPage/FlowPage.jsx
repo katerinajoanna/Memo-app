@@ -6,7 +6,7 @@ import EditMsgForm from "../../components/editForm/EditMsgForm";
 import BtnWrite from '../../components/buttonWrite/BtnWrite';
 import { Link, useNavigate } from 'react-router-dom';
 
-function FlowPage({ messages, onAddMessage, onRemoveMessage, onEdit }) {
+function FlowPage({ messages, onAddMessage, onRemoveMessage, onEdit, onFetchMessageById }) {
     const [showForm, setShowForm] = useState(false);
     const [editingMessage, setEditingMessage] = useState(null);
     const navigate = useNavigate();
@@ -26,6 +26,7 @@ function FlowPage({ messages, onAddMessage, onRemoveMessage, onEdit }) {
     };
 
     const handleEditMessage = (msg) => {
+        onFetchMessageById(msg.id); // Pobierz szczegóły wiadomości przez ID
         setEditingMessage(msg);
     };
 
