@@ -24,19 +24,25 @@ functions:
     handler: functions/CreateMessage/index.handler
     events:
       - httpApi:
-          path: /api/message
+          path: /api/messages
           method: post
   UpdateMessage:
     handler: functions/UpdateMessage/index.handler
     events:
       - httpApi:
-          path: /api/message/{id}
+          path: /api/messages/{id}
           method: put
+  GetSpecMessage:
+    handler: functions/GetSpecMessage/index.handler
+    events:
+      - httpApi:
+          path: /api/messages/{id}
+          method: get        
   DeleteMessages:
     handler: functions/DeleteMessage/index.handler
     events:
       - httpApi:
-          path: /api/message/{id}
+          path: /api/messages/{id}
           method: delete   
     
 resources:

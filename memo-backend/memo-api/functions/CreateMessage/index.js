@@ -18,13 +18,14 @@ exports.handler = async (event) => {
   try {
     const body = JSON.parse(event.body);
 
-    const { username, message, date } = body;
+    const { username, message } = body;
 
     if (!username || !message || !date) {
       return sendError(400, 'Missing required fields');
     }
 
     const id = generateRandomString(8);
+    const date = new Date().toISOString();    // generuj date w backend
 
     await db.put({
       TableName: 'Messages',

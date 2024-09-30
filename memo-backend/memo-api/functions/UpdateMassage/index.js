@@ -5,8 +5,7 @@ exports.handler = async (event) => {
   console.log("Event:", JSON.stringify(event)); // Loguj event
   const { text } = JSON.parse(event.body);
   console.log("Parsed text: ", text);
-  const { id } = event.pathParamet
-  ers;
+  const { id } = event.pathParameters;
   console.log("Message ID: ", id);
 
   if (!text) {
