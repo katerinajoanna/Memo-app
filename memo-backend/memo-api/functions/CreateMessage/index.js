@@ -20,7 +20,7 @@ exports.handler = async (event) => {
 
     const { username, message } = body;
 
-    if (!username || !message || !date) {
+    if (!username || !message) {
       return sendError(400, 'Missing required fields');
     }
 
