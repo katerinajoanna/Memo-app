@@ -3,13 +3,13 @@ const { db } = require('../../services/index');
 
 exports.handler = async (event) => {
   console.log("Event:", JSON.stringify(event)); // Loguj event
-  const { text } = JSON.parse(event.body);
-  console.log("Parsed text: ", text);
+  const { message } = JSON.parse(event.body);
+  console.log("Parsed message: ", message);
   const { id } = event.pathParameters;
   console.log("Message ID: ", id);
 
-  if (!text) {
-    return sendError(400, 'Invalid input: text is required');
+  if (!message) {
+    return sendError(400, 'Invalid input: message is required');
   }
 
   try {
@@ -17,9 +17,9 @@ exports.handler = async (event) => {
       TableName: 'Messages',
       Key: { id: id },
       ReturnValues: 'ALL_NEW',
-      UpdateExpression: 'set text = :text',
+      UpdateExpression: 'set message = :message',
       ExpressionAttributeValues: {
-        ':text': text,
+        ':message': message,
       }
 
     });
