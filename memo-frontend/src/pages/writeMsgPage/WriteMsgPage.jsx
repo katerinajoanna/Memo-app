@@ -12,8 +12,8 @@ function WriteMsgPage({ onAddMessage }) {
         if (username.trim() && message.trim()) {
             const newMessage = {
                 id: Date.now(),
-                username,
-                message,
+                username: username.trim(),
+                message: message.trim(),
                 date: new Date().toISOString(),
             };
             onAddMessage(newMessage);

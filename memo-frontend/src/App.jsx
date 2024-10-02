@@ -38,10 +38,29 @@ function App() {
   };
 
 
-
+  //Lägger till meddelande
   const addMessage = (newMessage) => {
-    setMessages((prevMessages) => [...prevMessages, newMessage]);
+    setMessages((prevMessages) => [...prevMessages, newMessage]); // Lägg till ny meddelande
+    console.log('Sending message to server:', newMessage);
+
+    axios.post('https://30k8uadsyf.execute-api.eu-north-1.amazonaws.com/api/messages', newMessage)
+      .then((response) => {
+        console.log('Response from server:', response.data);
+
+        // kollar upp om response.data har allt
+        if (response.data) {
+          setMessages((prevMessages) =>
+            prevMessages.map(msg =>
+              msg.id === response.data.id ? response.data : msg
+            )
+          );
+        }
+      })
+      .catch((error) => {
+        console.error('Could not add message.', error);
+      });
   };
+
 
   const removeMessage = (id) => {
     axios.delete(`https://30k8uadsyf.execute-api.eu-north-1.amazonaws.com/api/messages/${id}`)
@@ -55,7 +74,7 @@ function App() {
 
   const updateMessage = (updatedMessage) => {
 
-    if (!updateMessage.id || !updateMessage.message) {
+    if (!updatedMessage.id || !updatedMessage.message) {
       console.error('Invalid updated message:', updateMessage);
     }
 
