@@ -11,8 +11,8 @@ function MessageForm({ onAddMessage }) {
             const newMessage = {
                 id: Date.now(), // Genererar enkelt ID
                 username,
-                text: message,
-                createdAt: new Date().toISOString(),
+                message,
+                date: new Date().toISOString(),
             };
             onAddMessage(newMessage); // Skickar ett nytt meddelande till den överordnade komponenten
             setUsername('');

@@ -13,8 +13,8 @@ function WriteMsgPage({ onAddMessage }) {
             const newMessage = {
                 id: Date.now(),
                 username,
-                text: message,
-                createdAt: new Date().toISOString(),
+                message,
+                date: new Date().toISOString(),
             };
             onAddMessage(newMessage);
             navigate('/'); // Gå till FlowPage efter att du har lagt till ditt meddelande

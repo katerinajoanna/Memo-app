@@ -14,7 +14,7 @@ function MessageItem({ msg, onEdit, onRemove }) {
 
     if (!msg) return null;
 
-    const messageDate = new Date(msg.createdAt);
+    const messageDate = new Date(msg.date);
     const dayName = getDayName(messageDate);
 
     return (
@@ -25,7 +25,7 @@ function MessageItem({ msg, onEdit, onRemove }) {
             </div>
 
             <div className="message-body">
-                <p>{msg.text}</p>
+                <p>{msg.message}</p>
             </div>
             <div className="message-footer">
                 <span><strong>~ {msg.username}</strong></span>
